@@ -1,5 +1,6 @@
 namespace Converter.Core.Test
 {
+    using System;
     using Converter.Core.Model;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Shouldly;
@@ -77,6 +78,29 @@ namespace Converter.Core.Test
             fahrenheit.As(TemperatureUnit.Kelvin).ShouldBe(
                 266.483,
                 0.01);
+        }
+
+        [TestMethod]
+        public void ThatThrowsWhenIncorrectUnitPassed()
+        {
+            Should.Throw(
+                () => new Temperature(
+                    20,
+                    (TemperatureUnit)int.MaxValue),
+                typeof(ArgumentOutOfRangeException));
+        }
+
+
+        [TestMethod]
+        public void ThatThrowsWhenIncorrectUnitPassedToConvert()
+        {
+            var temperature = new Temperature(
+                20,
+                TemperatureUnit.Celsius);
+
+            Should.Throw(
+                () => temperature.As((TemperatureUnit)int.MaxValue),
+                typeof(ArgumentOutOfRangeException));
         }
     }
 }

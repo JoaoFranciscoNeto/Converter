@@ -14,7 +14,17 @@ namespace Converter.Core.Model
         public Temperature(double value, TemperatureUnit unit)
         {
             this.value = value;
-            this.unit = unit;
+
+            if (Enum.IsDefined(
+                typeof(TemperatureUnit),
+                unit))
+            {
+                this.unit = unit;
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException(nameof(unit));
+            }
         }
 
         public double As(TemperatureUnit targetUnit)
@@ -26,7 +36,7 @@ namespace Converter.Core.Model
                 TemperatureUnit.Fahrenheit => 9.0 / 5.0 * (baseValue - 273.15) + 32.0,
                 TemperatureUnit.Celsius => baseValue - 273.15,
                 TemperatureUnit.Kelvin => baseValue,
-                _ => throw new NotImplementedException(),
+                _ => throw new ArgumentOutOfRangeException(nameof(targetUnit)),
             };
         }
 
@@ -35,7 +45,7 @@ namespace Converter.Core.Model
             TemperatureUnit.Kelvin => this.value,
             TemperatureUnit.Fahrenheit => 5.0 / 9.0 * (this.value - 32.0) + 273.15,
             TemperatureUnit.Celsius => this.value + 273.15,
-            _ => throw new ArgumentOutOfRangeException(),
+            _ => throw new ArgumentOutOfRangeException(nameof(this.unit)),
         };
     }
 }
