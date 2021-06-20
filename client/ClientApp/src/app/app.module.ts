@@ -6,11 +6,13 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import { ConverterComponent } from "./converter/converter.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    ConverterComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -19,6 +21,7 @@ import { HomeComponent } from './home/home.component';
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: 'converter', component: ConverterComponent, pathMatch: 'full' },
     ])
   ],
   providers: [],
