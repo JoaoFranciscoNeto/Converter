@@ -13,6 +13,9 @@
 
             new UnitInfo(Quantity.Time, "Second", "s", d => d, d => d),
             new UnitInfo(Quantity.Time, "Millisecond", "ms", d => d*1e3, d => d*1e-3),
+
+            new UnitInfo(Quantity.Length, "Meter", "m", d => d, d => d),
+            new UnitInfo(Quantity.Length, "Foot", "ft", d => d*3.281, d => d/3.281),
         }.ToDictionary(u => u.Symbol);
     }
 }
