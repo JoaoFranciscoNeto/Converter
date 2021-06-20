@@ -10,17 +10,22 @@ import { ConverterService } from "./converter.service";
 export class ConverterComponent implements OnInit {
 
   converterForm: FormGroup;
-  constructor(private converterService: ConverterService) { }
+  availableQuantities;
+
+  constructor(private converterService: ConverterService, private fb: FormBuilder) { }
 
   ngOnInit() {
     this.initializeForm();
+    this.converterService.getAllQuantities().subscribe(r => this.availableQuantities = r);
   }
 
   initializeForm() {
-    this.converterForm = new FormGroup({
-      value: new FormControl(),
-      source: new FormControl(),
-      target: new FormControl(),
+    this.converterForm = this.fb.group({
+      valueTo: [],
+      valueFrom: [],
+      unitTo: ["K", Validators.required],
+      unitFrom: ["K", Validators.required],
+      quantity: [],
     });
   }
 

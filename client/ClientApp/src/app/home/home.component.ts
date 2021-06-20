@@ -7,6 +7,6 @@ import { ConverterService } from "../converter/converter.service";
 })
 export class HomeComponent implements OnInit {
   constructor(private converterService: ConverterService){}
-  ngOnInit(): void { throw new Error("Not implemented"); }
+  ngOnInit(): void {  }
 
 }
