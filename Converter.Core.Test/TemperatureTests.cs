@@ -1,7 +1,5 @@
 namespace Converter.Core.Test
 {
-    using System;
-    using Converter.Core.Model;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Shouldly;
 
@@ -10,97 +8,19 @@ namespace Converter.Core.Test
     {
         // TODO: Use DataTestMethods
 
-        [TestMethod]
-        public void ThatConvertsCelsiusToFahrenheit()
-        {
-            var celsius = new Temperature(
-                20,
-                TemperatureUnit.Celsius);
-
-            celsius.As(TemperatureUnit.Fahrenheit).ShouldBe(68);
-        }
-
-        [TestMethod]
-        public void ThatConvertsKelvinToFahrenheit()
-        {
-            var kelvin = new Temperature(
-                20,
-                TemperatureUnit.Kelvin);
-
-            kelvin.As(TemperatureUnit.Fahrenheit).ShouldBe(
-                -423.67,
-                0.01);
-        }
-
-        [TestMethod]
-        public void ThatConvertsFahrenheitToCelsius()
-        {
-            var fahrenheit = new Temperature(
-                20,
-                TemperatureUnit.Fahrenheit);
-
-            fahrenheit.As(TemperatureUnit.Celsius).ShouldBe(
-                -6.67,
-                0.01);
-        }
 
         [TestMethod]
         public void ThatConvertsCelsiusToKelvin()
         {
-            var celsius = new Temperature(
-                20,
-                TemperatureUnit.Celsius);
-
-            celsius.As(TemperatureUnit.Kelvin).ShouldBe(
-                293.15,
-                0.01);
-        }
-
-        [TestMethod]
-        public void ThatConvertsKelvinToCelsius()
-        {
-            var kelvin = new Temperature(
-                20,
-                TemperatureUnit.Kelvin);
-
-            kelvin.As(TemperatureUnit.Celsius).ShouldBe(
-                -253.15,
-                0.01);
+            UnitConverter.Convert(20, "°C", "K", out var converted).ShouldBeTrue();
+            converted.ShouldBe(293.15, .01);
         }
 
         [TestMethod]
         public void ThatConvertsFahrenheitToKelvin()
         {
-            var fahrenheit = new Temperature(
-                20,
-                TemperatureUnit.Fahrenheit);
-
-            fahrenheit.As(TemperatureUnit.Kelvin).ShouldBe(
-                266.483,
-                0.01);
-        }
-
-        [TestMethod]
-        public void ThatThrowsWhenIncorrectUnitPassed()
-        {
-            Should.Throw(
-                () => new Temperature(
-                    20,
-                    (TemperatureUnit)int.MaxValue),
-                typeof(ArgumentOutOfRangeException));
-        }
-
-
-        [TestMethod]
-        public void ThatThrowsWhenIncorrectUnitPassedToConvert()
-        {
-            var temperature = new Temperature(
-                20,
-                TemperatureUnit.Celsius);
-
-            Should.Throw(
-                () => temperature.As((TemperatureUnit)int.MaxValue),
-                typeof(ArgumentOutOfRangeException));
+            UnitConverter.Convert(20, "F", "K", out var converted).ShouldBeTrue();
+            converted.ShouldBe(266.483, .01);
         }
     }
 }
