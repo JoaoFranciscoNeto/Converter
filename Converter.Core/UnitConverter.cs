@@ -12,7 +12,7 @@
 
             if (sourceUnit.Quantity != targetUnit.Quantity)
             {
-                throw new ArgumentException($"{nameof(source)} and {nameof(targetUnit)} do not represent same quantities");
+                throw new ArgumentException($"{source} and {target} do not represent the same quantity.");
             }
 
             return Convert(value, sourceUnit, targetUnit, out converted);
