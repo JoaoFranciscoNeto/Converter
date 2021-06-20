@@ -33,5 +33,6 @@
     {
         Temperature,
         Time,
+        Length,
     }
 }

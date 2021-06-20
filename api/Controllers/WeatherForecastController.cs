@@ -1,39 +1,58 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-
-namespace api.Controllers
+﻿namespace api.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Converter.Core;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Logging;
+
     [ApiController]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
+        private static readonly string[] Summaries =
         {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+            "Freezing",
+            "Bracing",
+            "Chilly",
+            "Cool",
+            "Mild",
+            "Warm",
+            "Balmy",
+            "Hot",
+            "Sweltering",
+            "Scorching",
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
 
         public WeatherForecastController(ILogger<WeatherForecastController> logger)
         {
-            _logger = logger;
+            this._logger = logger;
         }
 
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
             var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            })
-            .ToArray();
+            return Enumerable.Range(1, 5).Select(
+                    index => new WeatherForecast
+                    {
+                        Date = DateTime.Now.AddDays(index),
+                        TemperatureC = rng.Next(-20, 55),
+                        Summary = Summaries[rng.Next(Summaries.Length)],
+                    })
+                .ToArray();
         }
+    }
+
+    [ApiController]
+    [Route("[controller]")]
+    public class ConverterController : ControllerBase
+    {
+        [HttpGet]
+        public double Get([FromQuery] double value, [FromQuery] string source, [FromQuery] string target) =>
+            UnitConverter.Convert(value, source, target, out var converted) ? converted : double.NaN;
     }
 }
