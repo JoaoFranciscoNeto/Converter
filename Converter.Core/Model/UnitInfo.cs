@@ -32,5 +32,6 @@
     public enum Quantity
     {
         Temperature,
+        Time,
     }
 }
