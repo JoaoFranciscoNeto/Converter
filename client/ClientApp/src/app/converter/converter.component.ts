@@ -53,7 +53,9 @@ export class ConverterComponent implements OnInit {
         flatMap(r => this.converterService.getAllUnitsForQuantity(String(r))))
       .subscribe(r => {
         this.units = r;
-        console.log(r);
+        this.converterForm.get("unitFrom").setValue(this.units[0].name);
+        this.converterForm.get("unitTo").setValue(this.units[1].name);
+        console.log(this.units[0].name);
       });
 
   }
