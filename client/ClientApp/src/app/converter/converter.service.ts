@@ -11,8 +11,8 @@ export class ConverterService {
   constructor(private httpClient: HttpClient) { }
 
 
-  convert(): void {
-    this.httpClient.get("https://localhost:5001/api/converter?value=20&source=F&target=K").subscribe(response => {
+  convert(fromUnit:string, toUnit:string, value:number): void {
+    this.httpClient.get("https://localhost:5001/api/converter?value=${number}&source=${fromUnit}&target=${toUn}").subscribe(response => {
         return response;
       },
       error => {
@@ -24,10 +24,15 @@ export class ConverterService {
     return this.httpClient.get<string[]>("https://localhost:5001/api/converter/quantities");
   }
 
-  getAllUnitsForQuantity(quantity: string) {
+  getAllUnitsForQuantity(quantity: string) : Observable<UnitInfo[]>{
+    const path = `https://localhost:5001/api/converter/units?quantity=${quantity}`;
+    console.log(path);
+    return this.httpClient.get<UnitInfo[]>(path);
   }
 }
 
-export class Quantity {
+export class UnitInfo {
+  quantityName: string;
   name: string;
+  symbol: string;
 }

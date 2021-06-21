@@ -22,6 +22,6 @@
         public string[] GetQuantities() => Enum.GetValues<Quantity>().Select(Enum.GetName).ToArray();
 
         [HttpGet("units")]
-        public UnitInfo[] GetUnits(string quantity) => UnitConverter.GetUnitsForQuantity(quantity);
+        public UnitInfo[] GetUnits([Required] [FromQuery] string quantity) => UnitConverter.GetUnitsForQuantity(quantity);
     }
 }

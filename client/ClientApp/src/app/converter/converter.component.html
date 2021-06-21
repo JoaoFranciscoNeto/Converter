@@ -1,5 +1,11 @@
-<p>converter works!</p>
-<form [formGroup]="converterForm">
+<form [formGroup]="converterForm" *ngIf="isFormReady">
+  <div class="form-group">
+    <select formControlName="quantity" id="quantity">
+      <option *ngFor="let quantity of availableQuantities; let i = index" [value]="availableQuantities[i]">
+        {{availableQuantities[i]}}
+      </option>
+    </select>
+  </div>
   <div class="form-group">
     <input type="number" class="form-control" placeholder="Value" id="valueFrom" formControlName="valueFrom" />
     <select class="form-control" id="unitFrom" formControlName="unitFrom">
@@ -16,16 +22,4 @@
       <option value="C">Celsius</option>
     </select>
   </div>
-  <div class="form-group">
-    <select formControlName="quantity" id="quantity">
-      <option *ngFor="let quantity of availableQuantities; let i = index" [value]="availableQuantities[i]">
-        {{availableQuantities[i]}}
-      </option>
-    </select>
-  </div>
 </form>
-
-
-<p>Form value: {{converterForm.value | json}}</p>
-<p>Form status: {{converterForm.status | json}}</p>
-<p>Available quantities: {{availableQuantities}}</p>

@@ -1,6 +1,7 @@
 ﻿namespace Converter.Core.Model
 {
     using System;
+    using System.Text.Json.Serialization;
 
     public class UnitInfo
     {
@@ -18,11 +19,13 @@
             this.ToSi = toSi;
         }
 
-        public Func<double, double> FromSi { get; }
+        [JsonIgnore] public Func<double, double> FromSi { get; }
 
-        public Func<double, double> ToSi { get; }
+        [JsonIgnore] public Func<double, double> ToSi { get; }
 
-        public Quantity Quantity { get; }
+        [JsonIgnore] public Quantity Quantity { get; }
+
+        public string QuantityName => Enum.GetName(typeof(Quantity), this.Quantity);
 
         public string Name { get; }
 
