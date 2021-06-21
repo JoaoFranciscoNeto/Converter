@@ -1,6 +1,7 @@
 ﻿namespace Converter.Core
 {
     using System;
+    using System.Linq;
     using Converter.Core.Model;
 
     public static class UnitConverter
@@ -25,6 +26,11 @@
         public static UnitInfo GetUnitInfo(string symbol) => UnitList.List.TryGetValue(symbol, out var info)
             ? info
             : throw new UnrecognizedUnitException(nameof(symbol));
+
+        public static UnitInfo[] GetUnitsForQuantity(string quantity)
+        {
+            return UnitList.List.Values.Where(u => u.Quantity.ToString().Equals(quantity)).ToArray();
+        }
 
         private static bool Convert(double value, UnitInfo source, UnitInfo target, out double converted)
         {

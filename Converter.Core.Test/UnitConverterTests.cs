@@ -13,5 +13,12 @@
             Should.Throw<ArgumentException>(() => UnitConverter.Convert(1, "s", "K", out var converted))
                 .Message.ShouldBe("s and K do not represent the same quantity.");
         }
+
+        [TestMethod]
+        public void ThatGetsUnitsForQuantity()
+        {
+            var units = UnitConverter.GetUnitsForQuantity("Temperature");
+            units.Length.ShouldBe(3);
+        }
     }
 }
