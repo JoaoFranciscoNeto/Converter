@@ -1,27 +1,28 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
+import { RouterModule } from "@angular/router";
 
-import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
+import { AppComponent } from "./app.component";
+import { HomeComponent } from "./home/home.component";
 import { ConverterComponent } from "./converter/converter.component";
+import { ConverterService } from "./converter/converter.service";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    ConverterComponent,
+    ConverterComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+    BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'converter', component: ConverterComponent, pathMatch: 'full' },
+      { path: "", component: HomeComponent, pathMatch: "full" },
+      { path: "converter", component: ConverterComponent, pathMatch: "full" },
     ])
   ],
   providers: [],

@@ -9,7 +9,7 @@
   <div class="form-group">
     <input type="number" class="form-control" placeholder="Value" id="valueFrom" formControlName="valueFrom" />
     <select class="form-control" id="unitFrom" formControlName="unitFrom">
-      <option *ngFor="let order of units; let i = index" [value]="units[i].name">
+      <option *ngFor="let order of units; let i = index" [value]="units[i].symbol">
         {{units[i].name}} ({{units[i].symbol}})
       </option>
     </select>
@@ -18,7 +18,7 @@
   <div class="form-group">
     <input type="number" class="form-control" placeholder="Value" id="valueTo" formControlName="valueTo" />
     <select class="form-control" id="unitTo" formControlName="unitTo">
-      <option *ngFor="let order of units; let i = index" [value]="units[i].name">
+      <option *ngFor="let order of units; let i = index" [value]="units[i].symbol">
         {{units[i].name}} ({{units[i].symbol}})
       </option>
     </select>

@@ -1,8 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ConverterComponent } from './converter.component';
+import { ConverterComponent } from "./converter.component";
 
-describe('ConverterComponent', () => {
+describe("ConverterComponent", () => {
   let component: ConverterComponent;
   let fixture: ComponentFixture<ConverterComponent>;
 
@@ -19,7 +19,7 @@ describe('ConverterComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
