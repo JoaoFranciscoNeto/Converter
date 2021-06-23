@@ -1,6 +1,7 @@
 ﻿namespace Converter.Core.Test
 {
     using System;
+    using Converter.Core.Model;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Shouldly;
 
@@ -19,6 +20,13 @@
         {
             var units = UnitConverter.GetUnitsForQuantity("Temperature");
             units.Length.ShouldBe(3);
+        }
+
+        [TestMethod]
+        public void ThatCreatesBaseSiUnit()
+        {
+            var unit = new UnitInfo(0, "TestName", "TestSymbol");
+            Assert.IsTrue(unit.IsSiBase);
         }
     }
 }

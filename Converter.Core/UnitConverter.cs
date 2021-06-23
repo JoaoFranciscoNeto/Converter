@@ -34,6 +34,12 @@
 
         private static bool Convert(double value, UnitInfo source, UnitInfo target, out double converted)
         {
+            if (source == target)
+            {
+                converted = value;
+                return true;
+            }
+
             try
             {
                 converted = FromSi(ToSi(value, source), target);

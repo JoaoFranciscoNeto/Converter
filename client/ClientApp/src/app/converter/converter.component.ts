@@ -31,9 +31,9 @@ export class ConverterComponent implements OnInit {
     this.converterForm = this.fb.group({
       valueTo: [],
       valueFrom: [],
-      unitTo: ["K", Validators.required],
-      unitFrom: ["K", Validators.required],
-      quantity: [this.availableQuantities],
+      unitTo: [Validators.required],
+      unitFrom: [Validators.required],
+      quantity: [],
     });
     
     this.converterForm.controls["quantity"].setValue(this.availableQuantities[0]);
