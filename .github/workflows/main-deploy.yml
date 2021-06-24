@@ -40,5 +40,5 @@ jobs:
           context: .
           push: true
           tags: |
-            registry.digitalocean.com/<REGISTRY_NAME>/api:latest
-            registry.digitalocean.com/<REGISTRY_NAME>/api:sha-${{ github.sha }}
+            registry.digitalocean.com/joaoneto-registry/api:latest
+            registry.digitalocean.com/joaoneto-registry/api:sha-${{ github.sha }}
