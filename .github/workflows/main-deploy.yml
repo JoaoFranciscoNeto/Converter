@@ -53,7 +53,7 @@ jobs:
         with:
           host: ${{ secrets.DIGITAL_OCEAN_HOST }}
           username: root
-          key: ${{ secrets.DIGITAL_OCEAN_API_KEY }}
+          key: ${{ secrets.DO_API_KEY }}
           port: 22
           script: |
             doctl registry login --expiry-seconds 180
