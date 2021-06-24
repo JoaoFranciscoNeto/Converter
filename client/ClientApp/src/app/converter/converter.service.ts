@@ -10,14 +10,14 @@ export class ConverterService {
   constructor(private httpClient: HttpClient) { }
 
   convert(fromUnit:string, toUnit:string, value:number): Observable<number> {
-    return this.httpClient.get<number>(`https://localhost:5001/api/converter?value=${value}&source=${fromUnit}&target=${toUnit}`);
+    return this.httpClient.get<number>(`api/converter?value=${value}&source=${fromUnit}&target=${toUnit}`);
   }
 
   getAllQuantities() : Observable<string[]> {
-    return this.httpClient.get<string[]>("https://localhost:5001/api/converter/quantities");
+    return this.httpClient.get<string[]>("api/converter/quantities");
   }
 
   getAllUnitsForQuantity(quantity: string) : Observable<UnitInfo[]>{
-    return this.httpClient.get<UnitInfo[]>(`https://localhost:5001/api/converter/units?quantity=${quantity}`);
+    return this.httpClient.get<UnitInfo[]>(`api/converter/units?quantity=${quantity}`);
   }
 }
