@@ -52,5 +52,6 @@ jobs:
 
             docker run -d \
               --restart always \
+              -p 0.0.0.0:80:80 \
               --name converter \
               registry.digitalocean.com/jneto-reg/converter:latest
