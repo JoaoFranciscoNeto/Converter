@@ -12,46 +12,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check Out 
-        uses: actions/checkout@v2
-
-      - name: GitHub Action for DigitalOcean - doctl
-        uses: digitalocean/action-doctl@v2.1.0
-        with:
-          version: latest
-          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN  }}
-          
-      - name: Authenticate with DigitalOcean Container Registry
-        run: doctl registry login --expiry-seconds 180
-      - name: Build and Push to DigitalOcean Container Registry
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          file: ./client/Dockerfile
-          push: true
-          tags: |
-            registry.digitalocean.com/jneto-reg/converter:latest
-
-  deploy-application:
-    needs: Build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy to DigitalOcean Droplet
-        uses: appleboy/ssh-action@v0.1.4
-        with:
-          host: ${{ secrets.DIGITAL_OCEAN_HOST }}
-          username: root
-          key: ${{ secrets.DO_API_KEY }}
-          port: 22
-          script: |
-            doctl registry login --expiry-seconds 180
-            docker pull registry.digitalocean.com/jneto-reg/converter:latest
-
-            docker stop converter || true
-            docker rm converter || true
-
-            docker run -d \
-              --restart always \
-              -p 0.0.0.0:80:80 \
-              --name converter \
-              registry.digitalocean.com/jneto-reg/converter:latest
+    - uses: actions/checkout@v2
+    - name: Build the docker-compose stack
+      run: docker-compose up -d
