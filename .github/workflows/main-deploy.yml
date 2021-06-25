@@ -41,7 +41,7 @@ jobs:
           file: ./client/Dockerfile
           push: true
           tags: |
-            registry.digitalocean.com/joaoneto-registry/converter:latest
+            registry.digitalocean.com/jneto-reg/converter:latest
 
   deploy-api-1:
     needs: Build
@@ -57,7 +57,7 @@ jobs:
           port: 22
           script: |
             doctl registry login --expiry-seconds 180
-            docker pull registry.digitalocean.com/joaoneto-registry/converter:latest
+            docker pull registry.digitalocean.com/jneto-reg/converter:latest
 
             docker stop converter || true
             docker rm converter || true
@@ -66,4 +66,4 @@ jobs:
               --restart always \
               -p 0.0.0.0:80:80 \
               --name api \
-              registry.digitalocean.com/joaoneto-registry/converter:latest
+              registry.digitalocean.com/jneto-reg/converter:latest
