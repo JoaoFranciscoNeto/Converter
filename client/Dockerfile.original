@@ -1,18 +1,19 @@
 #See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
 FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
-
 WORKDIR /app
-EXPOSE 5000
-
-ENV ASPNETCORE_URLS=http://+:5000
-RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
-USER appuser
+EXPOSE 80
+EXPOSE 443
+RUN apt-get update -yq \
+    && apt-get install curl gnupg -yq \
+    && curl -fsSL  https://deb.nodesource.com/setup_16.x | bash \
+    && apt-get install nodejs -yq
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
-RUN curl -sL https://deb.nodesource.com/setup_16.x |  bash -
-RUN apt-get install -y nodejs
-
+RUN apt-get update -yq \
+    && apt-get install curl gnupg -yq \
+    && curl -fsSL  https://deb.nodesource.com/setup_16.x | bash \
+    && apt-get install nodejs -yq
 WORKDIR /src
 COPY ["client/client.csproj", "client/"]
 COPY ["Converter.Core/Converter.Core.csproj", "Converter.Core/"]
@@ -27,4 +28,4 @@ RUN dotnet publish "client.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-    ENTRYPOINT ["dotnet", "client.dll"]
+ENTRYPOINT ["dotnet", "client.dll"]

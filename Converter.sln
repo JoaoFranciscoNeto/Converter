@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Converter.Core", "Converter
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Converter.Core.Test", "Converter.Core.Test\Converter.Core.Test.csproj", "{36D77DCE-2FC1-4939-8BE3-41CE48E5BABB}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{7F92745E-D65D-4126-BB07-D2BAA955FA2E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,18 @@ Global
 		{36D77DCE-2FC1-4939-8BE3-41CE48E5BABB}.Release|x64.Build.0 = Release|Any CPU
 		{36D77DCE-2FC1-4939-8BE3-41CE48E5BABB}.Release|x86.ActiveCfg = Release|Any CPU
 		{36D77DCE-2FC1-4939-8BE3-41CE48E5BABB}.Release|x86.Build.0 = Release|Any CPU
+		{7F92745E-D65D-4126-BB07-D2BAA955FA2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F92745E-D65D-4126-BB07-D2BAA955FA2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F92745E-D65D-4126-BB07-D2BAA955FA2E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7F92745E-D65D-4126-BB07-D2BAA955FA2E}.Debug|x64.Build.0 = Debug|Any CPU
+		{7F92745E-D65D-4126-BB07-D2BAA955FA2E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7F92745E-D65D-4126-BB07-D2BAA955FA2E}.Debug|x86.Build.0 = Debug|Any CPU
+		{7F92745E-D65D-4126-BB07-D2BAA955FA2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F92745E-D65D-4126-BB07-D2BAA955FA2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F92745E-D65D-4126-BB07-D2BAA955FA2E}.Release|x64.ActiveCfg = Release|Any CPU
+		{7F92745E-D65D-4126-BB07-D2BAA955FA2E}.Release|x64.Build.0 = Release|Any CPU
+		{7F92745E-D65D-4126-BB07-D2BAA955FA2E}.Release|x86.ActiveCfg = Release|Any CPU
+		{7F92745E-D65D-4126-BB07-D2BAA955FA2E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
